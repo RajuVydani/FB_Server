@@ -1,0 +1,98 @@
+<html>
+<head>
+	<title>Videos Data</title>
+	<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript">
+        $(document).ready(function () {
+            var url = "http://localhost:3000/fb/videos/agents";
+            $.ajax({
+                url: url,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    dataTableInit(data);
+                }
+            });
+
+            function dataTableInit(data) {
+                $('#datatable').dataTable().fnDestroy();
+                $('#datatable').dataTable({
+                    paging: true,
+                    sort: true,
+                    searching: true,
+                    scrollY: 400,
+                    data: data,
+                    columns: [
+                        { 'data': 'agentName' },
+                        { 'data': 'jobId', 'searchable': true },
+                        { 'data': 'team' },
+                        { 'data': 'decisionDate' },
+                        { 'data': 'tagSelected' }
+                    ]
+                });
+            }
+
+            $('#agentSearch').on('click', function(){
+                var url = "http://localhost:3000/fb/videos/agents";
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        dataTableInit(data);
+                    }
+                });
+                 
+            });
+        });
+    </script>
+    <style>
+        #agentSearch {
+            font-weight: "Museo-Sans", Helvetica, Arial, sans-serif !important;
+            font-size: 15px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #e0a905;
+            height: 40px;
+            width: 500px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <input id="agentSearch" type="button" value="Get Agents Data" style=""></input>
+        <br>
+        <br>
+        <div style="width: 1200px; border: 1px solid black; padding: 3px">
+            <table id="datatable" class="display compact">
+                <thead>
+                    <tr>
+                        <th>Agent Name</th>
+                        <th>JobId</th>
+                        <th>Team</th>
+                        <th>DecisionDate</th>
+                        <th>Decision</th>
+                    </tr>
+                </thead>
+               <!--  <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                        <th>Job Title</th>
+                    </tr>
+                </tfoot> -->
+            </table>
+        </div>
+    </form>
+</body>
+</html>

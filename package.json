@@ -1,0 +1,22 @@
+{
+  "name": "restapp",
+  "version": "1.0.0",
+  "description": "Restful application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raju Vydani",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "handlebars": "^4.0.6",
+    "hapi": "^16.1.1",
+    "mongoose": "^4.9.4",
+    "nodemon": "^1.11.0",
+    "vision": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
